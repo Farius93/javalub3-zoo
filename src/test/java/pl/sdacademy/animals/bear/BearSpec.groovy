@@ -5,6 +5,8 @@ import org.joda.time.Duration
 import pl.sdacademy.clock.Clock
 import spock.lang.Specification
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat
+
 
 class BearSpec extends Specification {
 
@@ -17,7 +19,7 @@ class BearSpec extends Specification {
         def result = bear.isAlive()
 
         then:
-        result == true
+        assertThat(result).isTrue()
 
         where:
         testBear << [new BlackBear(5), new PolarBear(20)]
@@ -43,7 +45,7 @@ class BearSpec extends Specification {
         def result = bear.isAlive()
 
         then:
-        result == false
+        assertThat(result).isFalse()
     }
 
 }

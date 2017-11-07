@@ -43,8 +43,12 @@ public abstract class Bear implements Animal {
         this.weight += quantityOfFood;
     }
 
-    public void drink(int waterWright) {
+    public void drink(int waterWright) {                    // nowa metoda do zwiekszania masy po wypiciu
         this.weight += (0.75 * waterWright);
+    }
+
+    public void poop(){
+        this.weight *=0.95;
     }
 
     @Override
