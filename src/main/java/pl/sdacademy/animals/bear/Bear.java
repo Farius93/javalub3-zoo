@@ -9,7 +9,7 @@ import pl.sdacademy.clock.DateTimeClock;
 
 public abstract class Bear implements Animal {
 
-    private int weight;
+    private double weight;
 
     private DateTime lastMealTime;
     private Clock clock;
@@ -52,7 +52,7 @@ public abstract class Bear implements Animal {
     }
 
     @Override
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 

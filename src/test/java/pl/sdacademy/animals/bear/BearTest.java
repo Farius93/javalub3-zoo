@@ -3,11 +3,7 @@ package pl.sdacademy.animals.bear;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.junit.jupiter.api.Test;
-
-<<<<<<< HEAD
-=======
 import static org.assertj.core.api.Assertions.assertThat;
->>>>>>> 9dc07b6cb3c9d8d3f897afb6d1589f8bc64316a1
 import static org.junit.jupiter.api.Assertions.*;
 
 class BearTest {
@@ -58,7 +54,7 @@ class BearTest {
     @Test
     void bearShouldIncreaseMassAfterMeal(){
         Bear bear = new BlackBear(1);
-        int oldWeight = bear.getWeight();
+        double oldWeight = bear.getWeight();
         bear.eat(4);
 
         assertTrue(bear.getWeight() > oldWeight);
@@ -67,9 +63,10 @@ class BearTest {
     @Test
     void bearShouldIncreaseMassAfterDrink(){
         Bear bear = new BlackBear(1);
-        int oldWeight = bear.getWeight();
+        double oldWeight = bear.getWeight();
 
         bear.drink(10);
-        assertTrue(bear.getWeight() > oldWeight);
+//        assertTrue(bear.getWeight() > oldWeight);
+        assertThat(bear.getWeight() > oldWeight).isTrue();
     }
 }
