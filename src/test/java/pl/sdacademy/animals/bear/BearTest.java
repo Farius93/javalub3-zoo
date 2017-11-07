@@ -48,7 +48,7 @@ class BearTest {
     void bearShouldIncreaseMassAfterDrink(){
         Bear bear = new BlackBear(1);
         int oldWeight = bear.getWeight();
-        
+
         bear.drink(10);
         assertTrue(bear.getWeight() > oldWeight);
     }
