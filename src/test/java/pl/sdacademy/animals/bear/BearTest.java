@@ -8,40 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BearTest {
 
-    @Test
-    void bearShouldBeAliveIfHasEatenWithin10Days() {
-        Bear bear = new BlackBear(1);
-        bear.eat();
-
-        assertThat(bear.isAlive()).isTrue();
-    }
-
-    @Test
-    void feedingBearShouldSetTheDateOfTheLastMealForNow() {
-        Bear bear = new BlackBear(1);
-        bear.eat();
-
-        assertThat(new Duration(bear.getLastMealTime(), DateTime.now()).isShorterThan(Duration.standardSeconds(1)))
-                .isTrue();
-    }
-
-    @Test
-    void bearShouldNotBeAliveIfItHasNotEatenForMoreThan10Days() {
-        Bear bear = new BlackBear(1, new TestClock());
-
-        boolean result = bear.isAlive();
-
-        assertThat(result).isFalse();
-    }
-
-    @Test
-    void feedingBearShouldSetFeedingTimeForNow() {
-        Bear bear = new BlackBear(1);
-        bear.eat();
-
-        assertTrue(new Duration(DateTime.now(), bear.getLastMealTime()).isShorterThan(Duration.standardSeconds(1)));
-
-    }
 
     @Test
     void bearShouldBeDeadAfter10DaysSinceLastMeal(){
@@ -52,21 +18,46 @@ class BearTest {
     }
 
     @Test
+    void feedingBearShouldSetFeedingTimeForNow() {
+        Bear bear = new BlackBear(1);
+        bear.eat(0);
+
+        assertTrue(new Duration(DateTime.now(), bear.getLastMealTime()).isShorterThan(Duration.standardSeconds(1)));
+
+    }
+
+    @Test
     void bearShouldIncreaseMassAfterMeal(){
         Bear bear = new BlackBear(1);
         double oldWeight = bear.getWeight();
-        bear.eat(4);
+        double foodQuantity = 4;
 
-        assertTrue(bear.getWeight() > oldWeight);
+        bear.eat(foodQuantity);
+
+        assertTrue(bear.getWeight() == oldWeight + foodQuantity);
     }
 
     @Test
     void bearShouldIncreaseMassAfterDrink(){
         Bear bear = new BlackBear(1);
         double oldWeight = bear.getWeight();
+        double waterQuantity = 10;
 
-        bear.drink(10);
+        bear.drink(waterQuantity);
+        assertThat(bear.getWeight() == (oldWeight + waterQuantity * 0.75)).isTrue();
 //        assertTrue(bear.getWeight() > oldWeight);
-        assertThat(bear.getWeight() > oldWeight).isTrue();
     }
+
+    @Test
+    void bearShouldDecreaseItsMassAfterPoop(){
+        Bear bear = new BlackBear(1);
+        double tempWeight = bear.getWeight();
+        bear.poop();
+
+        assertThat(((bear.getWeight() * 0.95) - tempWeight) < 0.001).isTrue();
+
+
+
+    }
+
 }

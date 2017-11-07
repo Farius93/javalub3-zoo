@@ -48,4 +48,13 @@ class BearSpec extends Specification {
         assertThat(result).isFalse()
     }
 
+    def "Feeding bear should increase its mass for amount eaten"() {
+        given:
+        Bear bear  = new BlackBear(1)
+
+        when:
+        def result = bear.
+
+    }
+
 }

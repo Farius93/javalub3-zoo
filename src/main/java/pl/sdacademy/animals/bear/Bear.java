@@ -34,21 +34,18 @@ public abstract class Bear implements Animal {
         return new Duration(lastMealTime, clock.getCurrentTime()).isShorterThan(Duration.standardDays(10));
     }
 
-    public void eat() {
-        lastMealTime = clock.getCurrentTime();
-    }
 
-    public void eat(int quantityOfFood) {                   // nowa metoda do testowania czy miś bedzie cieższy po zjedzeniu
-        this.eat();
+    public void eat(double quantityOfFood) {                   // nowa metoda do testowania czy miś bedzie cieższy po zjedzeniu
+        lastMealTime = clock.getCurrentTime();
         this.weight += quantityOfFood;
     }
 
-    public void drink(int waterWright) {                    // nowa metoda do zwiekszania masy po wypiciu
+    public void drink(double waterWright) {                    // nowa metoda do zwiekszania masy po wypiciu
         this.weight += (0.75 * waterWright);
     }
 
-    public void poop(){
-        this.weight *=0.95;
+    public void poop() {
+        this.weight = this.weight * 0.95;
     }
 
     @Override
